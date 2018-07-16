@@ -1,0 +1,44 @@
+.container {
+  height: 100%;
+  background: url(../../../assets/background.jpg) no-repeat center fixed;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+.title {
+  color: white;
+  margin: 0;
+  padding: 50px 20px;
+}
+.selected {
+  background-color: darkslategrey !important;
+  color: white;
+}
+.rooms {
+  margin: 0 0 2em 0;
+  list-style-type: none;
+  padding: 0;
+  width: 15em;
+}
+.rooms li {
+  cursor: pointer;
+  position: center;
+  left: 0;
+  background-color: #EEE;
+  margin: .5em;
+  padding: .3em 0;
+  height: 1.6em;
+  border-radius: 4px;
+}
+.rooms li.selected:hover {
+  background-color: #BBD8DC !important;
+  color: white;
+}
+.rooms li:hover {
+  color: #607D8B;
+  background-color: #DDD;
+  left: .1em;
+}
+.rooms .text {
+  position: center;
+  top: -3px;
+}
