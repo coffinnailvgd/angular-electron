@@ -9,9 +9,18 @@ import {VideoService} from '../../providers/video.service';
 })
 export class VideoConferenceComponent implements OnInit {
 
+  private localStream;
+  private mediaStreamConstraints = { video: true, };
+  private localVideo = document.querySelector('video');
+  private videoOn: boolean;
+  private audioOn: boolean;
+
   constructor(private audioService: AudioService, private videoService: VideoService) { }
 
   ngOnInit() {
+    this.redoVideo();
+    this.videoOn = true;
+    this.audioOn = true;
   }
 
   btnAudioClick() {
@@ -19,7 +28,31 @@ export class VideoConferenceComponent implements OnInit {
   }
 
   btnVideoClick() {
-    this.videoService.toggleVideo();
+    this.videoOn = this.videoService.toggleVideo();
+    this.redoVideo();
   }
+
+  private redoVideo() {
+    navigator.mediaDevices.getUserMedia(this.mediaStreamConstraints).
+    then(function (stream) {
+      const video = document.querySelector('video');
+      video.src = window.URL.createObjectURL(stream);
+      video.onloadedmetadata = function(e) {
+        video.play();
+      };
+    })
+      .catch(function (err) {
+        console.log(err.name + ': ' + err.message);
+      });
+  }
+
+  // gotLocalMediaStream(mediaStream) {
+  //   this.localStream = mediaStream;
+  //   this.localVideo.srcObject = mediaStream;
+  // }
+  //
+  // handleLocalMediaStreamError(error) {
+  //   console.log('navigator.getUserMedia error: ', error);
+  // }
 
 }
