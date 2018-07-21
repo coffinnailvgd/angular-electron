@@ -1,5 +1,17 @@
 <div class="container">
   <h1 class="title">Room {{room.id}}</h1>
-  <app-room-details [room]="room"> </app-room-details>
-  <a routerLink="" routerLinkActive="active">Back Home</a>
+  <div class="room-box">
+    <app-room-details [room]="room"> </app-room-details>
+    <a routerLink="" routerLinkActive="active">Back Home</a>
+    <div class="screen-share">
+      <app-screen-share></app-screen-share>
+    </div>
+    <div class="video-conference">
+      <app-video-conference></app-video-conference>
+    </div>
+  </div>
+  <app-user-profile-dropdown></app-user-profile-dropdown>
+  <div class="chat-box">
+    <app-chat></app-chat>
+  </div>
 </div>

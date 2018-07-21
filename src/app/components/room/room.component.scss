@@ -4,8 +4,44 @@
   -webkit-background-size: cover;
   background-size: cover;
 }
+.room-box {
+  border-style: solid;
+  border-color: #EEEEEE;
+  color: #EEEEEE;
+  height: 100%;
+  width: 70%;
+}
+.chat-box {
+  right: 0px;
+  bottom: 0px;
+  position: absolute;
+  color: #EEEEEE;
+  border-style: solid;
+  border-color: #EEEEEE;
+  width: 29%;
+  height: 50%;
+}
+.screen-share {
+  right: 0px;
+  top: 0px;
+  position: relative;
+}
+.video-conference {
+  border: #EEEEEE;
+}
 .title {
   color: white;
   margin: 0;
   padding: 50px 20px;
+}
+.team-members {
+  margin: 0 0 2em 0;
+  list-style-type: none;
+  padding: 0;
+}
+.team-members li {
+  position: center;
+  left: 0;
+  margin: .5em;
+  padding: .3em 0;
 }

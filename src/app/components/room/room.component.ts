@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {RoomService} from '../../providers/room.service';
 import {TeamMember} from '../../models/team-member';
 import {Room} from '../../models/room';
+import {AuthService} from '../../providers/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-room',
@@ -13,10 +15,14 @@ export class RoomComponent implements OnInit {
   private teamMembers: Array<TeamMember>;
   protected room: Room;
 
-  constructor(public roomService: RoomService) { }
+  constructor(private roomService: RoomService, private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
-    this.teamMembers = new Array<TeamMember>();
-    this.room = this.roomService.getSelectedRoom();
+    if (!this.authService.isLoggedIn) {
+      this.router.navigateByUrl('/login');
+    } else {
+      this.teamMembers = new Array<TeamMember>();
+      this.room = this.roomService.getSelectedRoom();
+    }
   }
 }

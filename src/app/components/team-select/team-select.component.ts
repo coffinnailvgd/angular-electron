@@ -23,7 +23,6 @@ export class TeamSelectComponent implements OnInit {
   showTeams() {
     this.teamService.getTeams().
       subscribe(teams => this.teams = teams)
-    console.log(this.teams);
   }
 
   onSelectedTeam(team: Team): void {

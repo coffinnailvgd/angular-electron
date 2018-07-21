@@ -34,7 +34,7 @@ export class RoomService {
 
   private addToRoom(room: Room): void {
     const id: number = room.id;
+    // TODO: remove the user from the old room
     ROOMS.find(room => room.id === id).teamMembers.push(this.authService.user.id);
-    console.log(room);
   }
 }

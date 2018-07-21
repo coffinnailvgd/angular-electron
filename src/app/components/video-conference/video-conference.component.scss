@@ -1,13 +1,5 @@
 .container {
-  height: 100%;
-  background: url(../../../assets/background.jpg) no-repeat center fixed;
-  -webkit-background-size: cover;
-  background-size: cover;
-}
-.title {
-  color: white;
-  margin:0;
-  padding:50px 20px;
+  color: #EEEEEE;
 }
 .btn {
   background-color: lightgrey;
@@ -22,9 +14,9 @@
   cursor: pointer;
   border-radius: 8px;
 }
-.btn-login {
+.btn-audio {
   background-color: green;
 }
-.btn-signup {
-  background-color: darkslategrey;
+.btn-video {
+  background-color: blue;
 }

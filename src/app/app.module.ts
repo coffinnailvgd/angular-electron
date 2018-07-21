@@ -26,6 +26,10 @@ import {AuthGuard} from './providers/auth-guard.service';
 import { TeamSelectComponent } from './components/team-select/team-select.component';
 import { RoomDetailsComponent } from './components/room-details/room-details.component';
 import { RoomComponent } from './components/room/room.component';
+import { ChatComponent } from './components/chat/chat.component';
+import { UserProfileDropdownComponent } from './components/user-profile-dropdown/user-profile-dropdown.component';
+import { ScreenShareComponent } from './components/screen-share/screen-share.component';
+import { VideoConferenceComponent } from './components/video-conference/video-conference.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -41,7 +45,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     SignupComponent,
     TeamSelectComponent,
     RoomDetailsComponent,
-    RoomComponent
+    RoomComponent,
+    ChatComponent,
+    UserProfileDropdownComponent,
+    ScreenShareComponent,
+    VideoConferenceComponent
   ],
   imports: [
     BrowserModule,

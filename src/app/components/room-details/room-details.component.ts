@@ -23,7 +23,6 @@ export class RoomDetailsComponent implements OnInit {
   getRoomTeamMembers() {
     if (this.room != null) {
       this.teamMemberService.getTeamMember(this.room.teamMembers).subscribe(teamMembers => this.teamMembers = teamMembers);
-      console.log(this.teamMembers);
       }
     }
 }

@@ -1,7 +1,12 @@
 .container {
 }
-.title {
-  color: white;
-  margin: 0;
-  padding: 50px 20px;
+.rooms {
+  margin: 0 0 2em 0;
+  list-style-type: none;
+  padding: 0;
+}
+.rooms li {
+  position: center;
+  left: 0;
+  margin: .5em;
 }
