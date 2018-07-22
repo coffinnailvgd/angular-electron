@@ -11,16 +11,15 @@ export class VideoConferenceComponent implements OnInit {
 
   private localStream;
   private mediaStreamConstraints = { video: true, };
-  private localVideo = document.querySelector('video');
-  private localVideoOn: boolean;
-  private audioOn: boolean;
+  private localVideo;
+  public localVideoOn: boolean;
+  private localAudioOn: boolean;
 
   constructor(private audioService: AudioService, private videoService: VideoService) { }
 
   ngOnInit() {
-    this.redoVideo();
-    this.localVideoOn = true;
-    this.audioOn = true;
+    this.localVideoOn = false;
+    this.localAudioOn = false;
   }
 
   btnAudioClick() {
@@ -34,25 +33,21 @@ export class VideoConferenceComponent implements OnInit {
 
   private redoVideo() {
     navigator.mediaDevices.getUserMedia(this.mediaStreamConstraints).
-    then(function (stream) {
-      const video = document.querySelector('video');
-      video.src = window.URL.createObjectURL(stream);
-      video.onloadedmetadata = function(e) {
-        video.play();
-      };
-    })
-      .catch(function (err) {
-        console.log(err.name + ': ' + err.message);
-      });
+      then(mediaStream => this.gotLocalMediaStream(mediaStream)).
+      catch(err => this.handleLocalMediaStreamError(err));
   }
 
-  // gotLocalMediaStream(mediaStream) {
-  //   this.localStream = mediaStream;
-  //   this.localVideo.srcObject = mediaStream;
-  // }
-  //
-  // handleLocalMediaStreamError(error) {
-  //   console.log('navigator.getUserMedia error: ', error);
-  // }
+  gotLocalMediaStream(mediaStream) {
+    this.localVideo = document.querySelector('video');
+    this.localStream = mediaStream;
+    this.localVideo.src = window.URL.createObjectURL(mediaStream);
+    this.localVideo.onloadedmetadata = function(e) {
+      this.localVideo.play();
+    };
+  }
+
+  handleLocalMediaStreamError(err) {
+    console.log('navigator.getUserMedia error: ', err);
+  }
 
 }

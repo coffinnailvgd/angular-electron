@@ -1,10 +1,11 @@
 <div class="container">
   <div *ngIf="localVideoOn; else elseBlock">
-    <video autoplay playsinline></video>
+    <video id="localVideo" autoplay playsinline></video>
     <button type="button" class="btn btn-video-on" (click)="btnVideoClick();">Video Off</button>
   </div>
   <ng-template #elseBlock>
     <button type="button" class="btn btn-video-off" (click)="btnVideoClick();">Video On</button>
-  .</ng-template>
+  </ng-template>
   <button type="button" class="btn btn-audio" (click)="btnAudioClick();">Toggle Audio</button>
+  <video id="remoteVide" autoplay playsinline>remote</video>
 </div>

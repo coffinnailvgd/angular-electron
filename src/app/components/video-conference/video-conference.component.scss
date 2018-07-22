@@ -2,7 +2,6 @@
   color: #EEEEEE;
 }
 .btn {
-  background-color: lightgrey;
   border: none;
   color: white;
   padding: 20px;
@@ -16,6 +15,9 @@
 }
 .btn-audio {
   background-color: green;
+}
+.btn-audio-off {
+  background-color: red;
 }
 .btn-video-on {
   background-color: green;

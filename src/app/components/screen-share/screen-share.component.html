@@ -1,3 +1,8 @@
 <div class="container">
-  <button type="button" class="btn" (click)="btnScreenShareClick();">Share Screen</button><br>
+  <div *ngIf="localScreenOn; else elseBlock">
+    <button type="button" class="btn btn-screen-on" (click)="btnScreenShareClick();">Screen Off</button>
+  </div>
+  <ng-template #elseBlock>
+    <button type="button" class="btn btn-screen-off" (click)="btnScreenShareClick();">Screen On</button>
+  </ng-template>
 </div>

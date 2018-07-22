@@ -2,7 +2,6 @@
   border: #EEEEEE;
 }
 .btn {
-  background-color: lightgrey;
   border: none;
   color: white;
   padding: 20px;
@@ -13,4 +12,10 @@
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 8px;
+}
+.btn-screen-on {
+  background-color: green;
+}
+.btn-screen-off {
+  background-color: red;
 }

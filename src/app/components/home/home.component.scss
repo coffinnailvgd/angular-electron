@@ -3,6 +3,12 @@
   background: url(../../../assets/background.jpg) no-repeat center fixed;
   -webkit-background-size: cover;
   background-size: cover;
+  position: relative;
+}
+.container-settings {
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 .title {
   color: white;

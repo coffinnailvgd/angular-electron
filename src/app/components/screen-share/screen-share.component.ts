@@ -8,13 +8,16 @@ import {ScreenShareService} from '../../providers/screen-share.service';
 })
 export class ScreenShareComponent implements OnInit {
 
+  protected localScreenOn: boolean;
+
   constructor(private screenShareService: ScreenShareService) { }
 
   ngOnInit() {
+    this.localScreenOn = false;
   }
 
   btnScreenShareClick() {
-    this.screenShareService.toggleScreenShare();
+    this.localScreenOn = this.screenShareService.toggleScreenShare();
   }
 
 }
