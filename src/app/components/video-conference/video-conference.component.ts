@@ -12,14 +12,14 @@ export class VideoConferenceComponent implements OnInit {
   private localStream;
   private mediaStreamConstraints = { video: true, };
   private localVideo = document.querySelector('video');
-  private videoOn: boolean;
+  private localVideoOn: boolean;
   private audioOn: boolean;
 
   constructor(private audioService: AudioService, private videoService: VideoService) { }
 
   ngOnInit() {
     this.redoVideo();
-    this.videoOn = true;
+    this.localVideoOn = true;
     this.audioOn = true;
   }
 
@@ -28,7 +28,7 @@ export class VideoConferenceComponent implements OnInit {
   }
 
   btnVideoClick() {
-    this.videoOn = this.videoService.toggleVideo();
+    this.localVideoOn = this.videoService.toggleVideo();
     this.redoVideo();
   }
 

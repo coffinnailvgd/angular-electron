@@ -1,5 +1,5 @@
 <div class="container">
-  <div *ngIf="videoOn; else elseBlock">
+  <div *ngIf="localVideoOn; else elseBlock">
     <video autoplay playsinline></video>
     <button type="button" class="btn btn-video-on" (click)="btnVideoClick();">Video Off</button>
   </div>
