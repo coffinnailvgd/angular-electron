@@ -30,6 +30,7 @@ import { ChatComponent } from './components/chat/chat.component';
 import { UserProfileDropdownComponent } from './components/user-profile-dropdown/user-profile-dropdown.component';
 import { ScreenShareComponent } from './components/screen-share/screen-share.component';
 import { VideoConferenceComponent } from './components/video-conference/video-conference.component';
+import { RemoteVideoComponent } from './components/remote-video/remote-video.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -49,7 +50,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ChatComponent,
     UserProfileDropdownComponent,
     ScreenShareComponent,
-    VideoConferenceComponent
+    VideoConferenceComponent,
+    RemoteVideoComponent
   ],
   imports: [
     BrowserModule,

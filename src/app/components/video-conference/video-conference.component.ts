@@ -38,12 +38,10 @@ export class VideoConferenceComponent implements OnInit {
   }
 
   gotLocalMediaStream(mediaStream) {
-    this.localVideo = document.querySelector('video');
+    this.localVideo = document.getElementById('localVideo');
     this.localStream = mediaStream;
-    this.localVideo.src = window.URL.createObjectURL(mediaStream);
-    this.localVideo.onloadedmetadata = function(e) {
-      this.localVideo.play();
-    };
+    this.localVideo.srcObject = mediaStream;
+    this.localVideo.play();
   }
 
   handleLocalMediaStreamError(err) {
