@@ -37,21 +37,32 @@ export class ScreenShareComponent implements OnInit {
 
   startVideo() {
     const n = <any>navigator;
-    n.mediaDevices.getUserMedia({audio: false,
-      video: {
-        mandatory: {
-          chromeMediaSource: 'desktop'
-        }
-      }}).
-    then(mediaStream => this.gotLocalMediaStream(mediaStream)).
-    catch(err => this.handleLocalMediaStreamError(err));
-  }
+    // n.mediaDevices.getUserMedia(this.mediaStreamConstraints).
+    // then(mediaStream => this.gotLocalMediaStream(mediaStream)).
+    // catch(err => this.handleLocalMediaStreamError(err));
 
-  randomThing() {
     desktopCapturer.getSources({types: ['window', 'screen']}, (error, sources) => {
+      if (error) {
+        throw error;
+      }
       for (let i = 0; i < sources.length; ++i) {
-        if (sources[i].name === 'Electron') {
-          this.startVideo();
+        console.log('source:' + sources[i].name);
+        if (sources[i].name === 'Entire screen') {
+          n.mediaDevices.getUserMedia({
+            audio: false,
+            video: {
+              mandatory: {
+                chromeMediaSource: 'desktop',
+                chromeMediaSourceId: sources[i].id,
+                minWidth: 200,
+                maxWidth: 200,
+                minHeight: 150,
+                maxHeight: 150
+              }
+            }
+          }).
+          then(mediaStream => this.gotLocalMediaStream(mediaStream)).
+          catch(err => this.handleLocalMediaStreamError(err));
         }
       }
     });
@@ -69,39 +80,3 @@ export class ScreenShareComponent implements OnInit {
   }
 
 }
-
-// const {desktopCapturer} = require('electron')
-//
-// desktopCapturer.getSources({types: ['window', 'screen']}, (error, sources) => {
-//   if (error) throw error
-//   for (let i = 0; i < sources.length; ++i) {
-//     if (sources[i].name === 'Electron') {
-//       navigator.mediaDevices.getUserMedia({
-//         audio: false,
-//         video: {
-//           mandatory: {
-//             chromeMediaSource: 'desktop',
-//             chromeMediaSourceId: sources[i].id,
-//             minWidth: 1280,
-//             maxWidth: 1280,
-//             minHeight: 720,
-//             maxHeight: 720
-//           }
-//         }
-//       })
-//         .then((stream) => handleStream(stream))
-//         .catch((e) => handleError(e))
-//       return
-//     }
-//   }
-// })
-//
-// function handleStream (stream) {
-//   const video = document.querySelector('video')
-//   video.srcObject = stream
-//   video.onloadedmetadata = (e) => video.play()
-// }
-//
-// function handleError (e) {
-//   console.log(e)
-// }

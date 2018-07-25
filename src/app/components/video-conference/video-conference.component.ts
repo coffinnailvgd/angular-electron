@@ -10,7 +10,16 @@ import {VideoService} from '../../providers/video.service';
 export class VideoConferenceComponent implements OnInit {
 
   private localStream;
-  private mediaStreamConstraints = { video: true, };
+  private mediaStreamConstraints = {
+    video: {
+      mandatory: {
+        minWidth: 200,
+        maxWidth: 200,
+        minHeight: 150,
+        maxHeight: 150
+      }
+    }
+  };
   private localVideo;
   public localVideoOn: boolean;
   private localAudioOn: boolean;
@@ -32,7 +41,8 @@ export class VideoConferenceComponent implements OnInit {
   }
 
   private redoVideo() {
-    navigator.mediaDevices.getUserMedia(this.mediaStreamConstraints).
+    const n = <any>navigator;
+    n.mediaDevices.getUserMedia(this.mediaStreamConstraints).
       then(mediaStream => this.gotLocalMediaStream(mediaStream)).
       catch(err => this.handleLocalMediaStreamError(err));
   }
