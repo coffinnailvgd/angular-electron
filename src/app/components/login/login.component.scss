@@ -3,6 +3,8 @@
   background: url(../../../assets/background.jpg) no-repeat center fixed;
   -webkit-background-size: cover;
   background-size: cover;
+  position: relative;
+  text-align: center;
 }
 .title {
   color: white;
@@ -10,7 +12,6 @@
   padding:50px 20px;
 }
 .btn {
-  background-color: lightgrey;
   border: none;
   color: white;
   padding: 20px;
@@ -27,4 +28,10 @@
 }
 .btn-signup {
   background-color: darkslategrey;
+}
+.fa-envelope {
+  color: lightgrey;
+}
+.fa-key {
+  color: lightgrey;
 }

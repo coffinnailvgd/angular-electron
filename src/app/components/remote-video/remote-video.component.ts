@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {startTimeRange} from '@angular/core/src/profile/wtf_impl';
 
 @Component({
   selector: 'app-remote-video',
@@ -18,7 +17,14 @@ export class RemoteVideoComponent implements OnInit {
     offerToReceiveVideo: 1,
   };
   private mediaStreamConstraints = {
-    video: true,
+    video: {
+      mandatory: {
+        minWidth: 200,
+        maxWidth: 200,
+        minHeight: 150,
+        maxHeight: 150
+      }
+    }
   };
   private localVideo;
   private remoteVideo;
@@ -84,8 +90,6 @@ export class RemoteVideoComponent implements OnInit {
   connectRemote() {
     this.trace('starting call.');
     this.startTime = window.performance.now();
-
-    console.log('ITS WOR$KING');
 
     const videoTracks = this.localStream.getVideoTracks();
     const audioTracks = this.localStream.getAudioTracks();
@@ -172,7 +176,8 @@ export class RemoteVideoComponent implements OnInit {
   }
 
   btnRemoteStartClick() {
-    navigator.mediaDevices.getUserMedia(this.mediaStreamConstraints).
+    const n = <any>navigator;
+    n.mediaDevices.getUserMedia(this.mediaStreamConstraints).
     then(mediaStream => this.gotLocalMediaStream(mediaStream)).
     catch(err => this.handleLocalMediaStreamError(err));
   }
@@ -182,7 +187,7 @@ export class RemoteVideoComponent implements OnInit {
   }
 
   gotLocalMediaStream(mediaStream) {
-    this.localVideo = document.getElementById('localVideo');
+    this.localVideo = document.getElementById('remoteVideo');
     this.localStream = mediaStream;
     this.localVideo.srcObject = mediaStream;
   }
@@ -192,6 +197,7 @@ export class RemoteVideoComponent implements OnInit {
     const mediaStream = event.stream;
     this.remoteStream = mediaStream;
     this.remoteVideo.srcObject = mediaStream;
+    console.log('CALLING PLAY');
     this.remoteVideo.play();
   }
 

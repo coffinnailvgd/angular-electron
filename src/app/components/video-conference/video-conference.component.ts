@@ -37,10 +37,14 @@ export class VideoConferenceComponent implements OnInit {
 
   btnVideoClick() {
     this.localVideoOn = this.videoService.toggleVideo();
-    this.redoVideo();
+    if (this.localVideoOn) {
+      this.startLocalVideo();
+    } else {
+      this.stopVideo();
+    }
   }
 
-  private redoVideo() {
+  private startLocalVideo() {
     const n = <any>navigator;
     n.mediaDevices.getUserMedia(this.mediaStreamConstraints).
       then(mediaStream => this.gotLocalMediaStream(mediaStream)).
@@ -51,7 +55,18 @@ export class VideoConferenceComponent implements OnInit {
     this.localVideo = document.getElementById('localVideo');
     this.localStream = mediaStream;
     this.localVideo.srcObject = mediaStream;
+    console.log('ABOUT TO CALL PLAY IN LOCAL VIDEO');
     this.localVideo.play();
+  }
+
+  stopVideo() {
+    const stream = this.localVideo.srcObject;
+    const tracks = stream.getTracks();
+
+    tracks.forEach(function(track) {
+      console.log('stopping: ' + track.name);
+      track.stop();
+    });
   }
 
   handleLocalMediaStreamError(err) {

@@ -1,8 +1,14 @@
 <div class="container">
   <h1 class="title"> {{ 'PAGES.HOME.TITLE' | translate }} </h1><br>
   <form id="login-form">
-    <input type="text" placeholder="your username" id="username"><br>
-    <input type="text" placeholder="your password" id="password">
+    <div class="input-group margin-bottom-sm">
+      <span><i class="fas fa-envelope" aria-hidden="true"></i></span>
+      <input type="text" placeholder="Email address" id="username">
+    </div>
+    <div class="input-prepend">
+      <span><i class="fas fa-key"></i></span>
+      <input type="password" placeholder="Password" id="password">
+    </div>
   </form>
   <button type="button" class="btn btn-login" (click)="btnLoginClick();" form="login-form">Log In</button><br>
   <hr>
