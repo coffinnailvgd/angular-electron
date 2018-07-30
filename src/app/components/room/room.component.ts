@@ -13,7 +13,7 @@ import {Router} from '@angular/router';
 export class RoomComponent implements OnInit {
 
   private teamMembers: Array<TeamMember>;
-  protected room: Room;
+  public room: Room;
 
   constructor(private roomService: RoomService, private authService: AuthService, private router: Router) { }
 

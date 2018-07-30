@@ -9,7 +9,7 @@ import { desktopCapturer } from 'electron';
 })
 export class ScreenShareComponent implements OnInit {
 
-  protected localScreenOn: boolean;
+  public localScreenOn: boolean;
   private localScreenVideo;
   private localStream;
   private mediaStreamConstraints = {
@@ -36,14 +36,13 @@ export class ScreenShareComponent implements OnInit {
     this.localScreenOn = this.screenShareService.toggleScreenShare();
     if (this.localScreenOn) {
       this.startVideo();
+    } else {
+      this.stopShare();
     }
   }
 
   startVideo() {
     const n = <any>navigator;
-    // n.mediaDevices.getUserMedia(this.mediaStreamConstraints).
-    // then(mediaStream => this.gotLocalMediaStream(mediaStream)).
-    // catch(err => this.handleLocalMediaStreamError(err));
 
     desktopCapturer.getSources({types: ['window', 'screen']}, (error, sources) => {
       if (error) {
@@ -59,9 +58,9 @@ export class ScreenShareComponent implements OnInit {
                 chromeMediaSource: 'desktop',
                 chromeMediaSourceId: sources[i].id,
                 minWidth: 400,
-                maxWidth: 400,
+                maxWidth: 600,
                 minHeight: 300,
-                maxHeight: 300
+                maxHeight: 400
               }
             }
           }).
@@ -81,6 +80,16 @@ export class ScreenShareComponent implements OnInit {
 
   handleLocalMediaStreamError(err) {
     console.log('navigator.getUserMedia error: ', err);
+  }
+
+  stopShare() {
+    const stream = this.localScreenVideo.srcObject;
+    const tracks = stream.getTracks();
+
+    tracks.forEach(function(track) {
+      console.log('stopping: ' + track.name);
+      track.stop();
+    });
   }
 
 }

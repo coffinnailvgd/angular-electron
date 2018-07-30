@@ -3,11 +3,15 @@
   <a routerLink="" routerLinkActive="active">Back Home</a>
   <div class="room-box">
     <app-room-details [room]="room"> </app-room-details>
+    <div class="left">
     <div class="screen-share">
       <app-screen-share></app-screen-share>
     </div>
+    </div>
+    <div class="right">
     <div class="video-conference">
       <app-video-conference></app-video-conference>
+    </div>
     </div>
     <div>
       <app-remote-video></app-remote-video>
