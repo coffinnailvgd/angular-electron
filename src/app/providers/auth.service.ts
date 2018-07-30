@@ -27,11 +27,15 @@ export class AuthService {
   // }
 
   login(username: string, password: string): Observable<boolean> {
-    this.user = new User(100, username, 'test@mail.com', [ 1 ]);
-    TEAMMEMBERS.push(new TeamMember(this.user.id, this.user.username));
-    return of(true).pipe(
-      tap(val => this.isLoggedIn = true)
-    );
+    if (username === 'user') {
+      this.user = new User(100, username, 'test@mail.com', [1]);
+      TEAMMEMBERS.push(new TeamMember(this.user.id, this.user.username));
+      return of(true).pipe(
+        tap(val => this.isLoggedIn = true)
+      );
+    } else {
+      return of(false);
+    }
   }
 
   getUser(): User {
