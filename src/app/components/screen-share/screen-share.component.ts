@@ -16,7 +16,11 @@ export class ScreenShareComponent implements OnInit {
     audio: false,
     video: {
       mandatory: {
-        chromeMediaSource: 'desktop'
+        chromeMediaSource: 'desktop',
+        minWidth: 200,
+        maxWidth: 200,
+        minHeight: 150,
+        maxHeight: 150
       }
     }
   };
@@ -47,17 +51,17 @@ export class ScreenShareComponent implements OnInit {
       }
       for (let i = 0; i < sources.length; ++i) {
         console.log('source:' + sources[i].name);
-        if (sources[i].name === 'Entire screen') {
+        if (sources[i].name === 'Entire screen' || sources[i].name === 'Screen 1') {
           n.mediaDevices.getUserMedia({
             audio: false,
             video: {
               mandatory: {
                 chromeMediaSource: 'desktop',
                 chromeMediaSourceId: sources[i].id,
-                minWidth: 200,
-                maxWidth: 200,
-                minHeight: 150,
-                maxHeight: 150
+                minWidth: 400,
+                maxWidth: 400,
+                minHeight: 300,
+                maxHeight: 300
               }
             }
           }).

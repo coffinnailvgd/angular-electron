@@ -1,6 +1,8 @@
 <div class="container">
-  <div *ngIf="localScreenOn; else elseBlock">
+  <div class="screen-box">
     <video id="localScreenShare" autoplay playsinline></video>
+  </div>
+  <div *ngIf="localScreenOn; else elseBlock">
     <button type="button" class="btn btn-screen-on" (click)="btnScreenShareClick();">Screen Off</button>
   </div>
   <ng-template #elseBlock>
