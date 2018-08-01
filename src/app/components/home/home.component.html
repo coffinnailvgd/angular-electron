@@ -4,7 +4,7 @@
     <li *ngFor="let room of rooms"
         [class.selected]="room === selectedRoom"
         (click)="onSelectedRoom(room)">
-        Room {{room.id}}
+        {{room.name}} room
       <app-room-details [room]="room"> </app-room-details>
     </li>
   </ul>
