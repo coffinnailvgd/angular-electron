@@ -50,7 +50,7 @@ export class ScreenShareComponent implements OnInit {
       }
       for (let i = 0; i < sources.length; ++i) {
         console.log('source:' + sources[i].name);
-        if (sources[i].name === 'Entire screen' || sources[i].name === 'Screen 1') {
+        if (sources[i].name === 'Entire screen' || sources[i].name === 'Screen 2') {
           n.mediaDevices.getUserMedia({
             audio: false,
             video: {
